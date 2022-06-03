@@ -7,7 +7,7 @@ const defaultForm = {
   password: "",
 };
 
-function RegisterForm({setRegisterMode, signUp}) {
+function RegisterForm({setRegisterMode, signUp, setMessage}) {
   const [form, setForm] = useState(defaultForm);
 
   const handleChange = (e) => {
@@ -16,10 +16,24 @@ function RegisterForm({setRegisterMode, signUp}) {
     setForm({...form, [name]: value});
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!e.target.checkValidity()) {
+      setMessage({type: "danger", msg: "Campos requeridos"});
+      return;
+    }
+
+    setMessage(null);
+    signUp(form.email, form.password);
+
+    setForm(defaultForm);
+  };
+
   return (
     <>
       <h3>Registrar</h3>
-      <form>
+      <form onSubmit={handleSubmit} noValidate>
         <Input
           type="email"
           name="email"
@@ -38,7 +52,7 @@ function RegisterForm({setRegisterMode, signUp}) {
           placeholder="Ingrese su contraseña"
           value={form.password}
           handleChange={handleChange}
-          constraints={{required: true}}
+          constraints={{minLength: 6, required: true}}
         />
         <div className="d-grid gap-2">
           <button type="submit" className="btn btn-primary">

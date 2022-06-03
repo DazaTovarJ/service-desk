@@ -24,13 +24,16 @@ function LoginForm({setRegisterMode, signIn, setMessage}) {
       return;
     }
 
+    setMessage(null);
     signIn(form.email, form.password);
+
+    setForm(defaultForm);
   };
 
   return (
     <>
       <h3>Iniciar Sesión</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} noValidate>
         <Input
           type="email"
           name="email"

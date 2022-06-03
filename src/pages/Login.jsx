@@ -43,7 +43,7 @@ const Login = () => {
       }
 
       if (error.code === "auth/email-already-in-use") {
-        setMessage({type: "danger", message: "El usuario ya existe"});
+        setMessage({type: "danger", msg: "El usuario ya existe"});
       }
     } finally {
       setLoading(false);
@@ -75,7 +75,7 @@ const Login = () => {
   return (
     <div>
       <h2>Ingreso al sistema</h2>
-      {message && <Message />}
+      {message && <Message setMessage={setMessage} {...message} />}
       {!registerMode ? (
         <LoginForm
           setRegisterMode={setRegisterMode}
