@@ -16,7 +16,7 @@ import Table from "../../components/Table";
 import Loader from "../../components/Loader";
 import {useModal} from "../../hooks/useModal";
 
-const QueryRequest = ({user}) => {
+const Requests = ({user}) => {
   const [requests, setRequests] = useState([]);
   const [message, setMessage] = useState(null);
   const [dataToUpdate, setDataToUpdate] = useState(null);
@@ -123,4 +123,4 @@ const QueryRequest = ({user}) => {
   );
 };
 
-export default QueryRequest;
+export default Requests;

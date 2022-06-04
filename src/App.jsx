@@ -4,8 +4,7 @@ import {onAuthStateChanged} from "firebase/auth";
 import {auth} from "./firebase";
 import Loader from "./components/Loader";
 import PrivateRoute from "./components/PrivateRoute";
-// import CreateRequest from "./pages/functions/CreateRequest";
-import QueryRequest from "./pages/functions/QueryRequest";
+import Requests from "./pages/functions/Requests";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Base from "./pages/template/Base";
@@ -41,7 +40,7 @@ function App() {
             path="request"
             element={
               <PrivateRoute>
-                <QueryRequest user={firebaseUser} />
+                <Requests user={firebaseUser} />
               </PrivateRoute>
             }
           />
