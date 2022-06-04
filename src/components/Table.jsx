@@ -5,7 +5,7 @@ import QuestionModal from "./QuestionModal";
 import {useModal} from "../hooks/useModal";
 
 function Table({data, deleteData}) {
-  const [opened, openModal, closeModal] = useModal(false);
+  const [, openModal, closeModal] = useModal(false);
   const [question, setQuestion] = useState({question: ""});
 
   let renderData = null;
