@@ -4,7 +4,7 @@ import TableRow from "./TableRow";
 import QuestionModal from "./QuestionModal";
 import {useModal} from "../hooks/useModal";
 
-function Table({data, deleteData}) {
+function Table({data, setDataToUpdate, deleteData}) {
   const [, openModal, closeModal] = useModal(false);
   const [question, setQuestion] = useState({question: ""});
 
@@ -34,6 +34,7 @@ function Table({data, deleteData}) {
                 <TableRow
                   key={request.id}
                   request={request}
+                  setDataToUpdate={setDataToUpdate}
                   deleteData={deleteData}
                   setQuestion={setQuestion}
                   openModal={openModal}
@@ -47,10 +48,10 @@ function Table({data, deleteData}) {
     );
   }
   return (
-    <div className="col-sm-12 col-lg-9">
+    <>
       <h2>Información de usuario</h2>
       {renderData}
-    </div>
+    </>
   );
 }
 

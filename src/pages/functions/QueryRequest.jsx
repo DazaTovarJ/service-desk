@@ -5,7 +5,6 @@ import {
   doc,
   getDocs,
   setDoc,
-  Timestamp,
   updateDoc,
 } from "firebase/firestore";
 import {nanoid} from "nanoid";
@@ -20,7 +19,7 @@ import {useModal} from "../../hooks/useModal";
 const QueryRequest = ({user}) => {
   const [requests, setRequests] = useState([]);
   const [message, setMessage] = useState(null);
-  const [editMode, setEditMode] = useState(false);
+  const [dataToUpdate, setDataToUpdate] = useState(null);
   const [, openModal, closeModal] = useModal(false);
   const [loading, setLoading] = useState(true);
 
@@ -87,21 +86,31 @@ const QueryRequest = ({user}) => {
         <Loader />
       ) : (
         <>
-          <Table data={requests} deleteData={deleteData} />
+          <Table
+            data={requests}
+            setDataToUpdate={setDataToUpdate}
+            deleteData={deleteData}
+          />
           <button
             className="btn btn-primary"
             data-bs-toggle="modal"
             data-bs-target="#form-modal"
-            onClick={openModal}
+            onClick={() => {
+              if (dataToUpdate != null) {
+                setDataToUpdate(null);
+              }
+              openModal();
+            }}
           >
             Agregar nueva solicitud
           </button>
           <FormModal
-            title={editMode ? "Editar Solicitud" : "Agregar Solicitud"}
+            title={dataToUpdate ? "Editar Solicitud" : "Agregar Solicitud"}
             closeModal={closeModal}
           >
             <ServiceForm
-              editMode={editMode}
+              data={dataToUpdate}
+              setData={setDataToUpdate}
               insertRequest={insertData}
               updateRequest={updateData}
               setMessage={setMessage}

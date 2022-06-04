@@ -1,12 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function TableRow({request, deleteData, setQuestion, openModal, closeModal}) {
+function TableRow({
+  request,
+  setDataToUpdate,
+  deleteData,
+  setQuestion,
+  openModal,
+  closeModal,
+}) {
+  const handleEdit = () => {
+    setDataToUpdate(request);
+    openModal();
+  };
+
   const handleDelete = () => {
     setQuestion({
       question: `¿Está seguro de que desea eliminar la petición ${request.id}?`,
       handleConfirm() {
-        deleteData(request.id);
+        deleteData(request);
         closeModal();
       },
     });
@@ -22,6 +34,15 @@ function TableRow({request, deleteData, setQuestion, openModal, closeModal}) {
       <td>{request.location}</td>
       <td>{request.date}</td>
       <td>
+        <button
+          type="button"
+          className="btn btn-warning"
+          data-bs-toggle="modal"
+          data-bs-target="#form-modal"
+          onClick={handleEdit}
+        >
+          Editar
+        </button>
         <button
           type="button"
           className="btn btn-danger"

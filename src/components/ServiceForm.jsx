@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Input from "./Input";
 
 const dateFormat = (date) => {
@@ -52,13 +52,21 @@ const loadServices = (option) => {
 };
 
 const ServiceForm = ({
-  editMode,
+  data,
   insertRequest,
   updateRequest,
   setMessage,
   closeModal,
 }) => {
   const [form, setForm] = useState(defaultForm);
+
+  useEffect(() => {
+    if (data) {
+      setForm(data);
+    } else {
+      setForm(defaultForm);
+    }
+  }, [data]);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -77,7 +85,7 @@ const ServiceForm = ({
     }
 
     setMessage(null);
-    if (!editMode) {
+    if (form.id === null) {
       insertRequest(form);
     } else {
       updateRequest(form);
