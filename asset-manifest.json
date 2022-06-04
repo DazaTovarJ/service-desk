@@ -1,13 +1,16 @@
 {
   "files": {
     "main.css": "/service-desk/static/css/main.f8e783f6.css",
-    "main.js": "/service-desk/static/js/main.1e8cabfb.js",
+    "main.js": "/service-desk/static/js/main.33fd1e89.js",
+    "static/media/manteinance_electrical.jpg": "/service-desk/static/media/manteinance_electrical.af62a1c2940ff4b030bb.jpg",
+    "static/media/manteinance_ac.png": "/service-desk/static/media/manteinance_ac.dd22c530c30d591472ae.png",
+    "static/media/general_keepings.jpg": "/service-desk/static/media/general_keepings.26d37ada79d4a3ed5901.jpg",
     "index.html": "/service-desk/index.html",
     "main.f8e783f6.css.map": "/service-desk/static/css/main.f8e783f6.css.map",
-    "main.1e8cabfb.js.map": "/service-desk/static/js/main.1e8cabfb.js.map"
+    "main.33fd1e89.js.map": "/service-desk/static/js/main.33fd1e89.js.map"
   },
   "entrypoints": [
     "static/css/main.f8e783f6.css",
-    "static/js/main.1e8cabfb.js"
+    "static/js/main.33fd1e89.js"
   ]
 }
