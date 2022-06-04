@@ -1,27 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function TableRow({ user, deleteData, setModal }) {
-  const { id, nombre, apellido, correo, curso, tipo } = user;
-
+function TableRow({request, deleteData, setModal}) {
   const handleDelete = () => {
     setModal({
       type: "confirmation",
-      msg: `¿Está seguro de que desea eliminar el usuario con id ${id}?`,
+      msg: `¿Está seguro de que desea eliminar la solicitud con id ${request.id}?`,
       handleClick: function () {
-        deleteData(id);
+        deleteData(request.id);
       },
     });
   };
 
   return (
     <tr>
-      <td>{id}</td>
-      <td>{nombre}</td>
-      <td>{apellido}</td>
-      <td>{correo}</td>
-      <td>{curso}</td>
-      <td>{tipo}</td>
+      {/* <td>{request.id}</td> */}
+      <td>{request.category}</td>
+      <td>{request.service_type}</td>
+      <td>{request.description}</td>
+      <td>{request.location}</td>
+      <td>{request.date}</td>
       <td>
         <button
           type="button"
@@ -38,7 +36,7 @@ function TableRow({ user, deleteData, setModal }) {
 }
 
 TableRow.propTypes = {
-  user: PropTypes.object.isRequired,
+  request: PropTypes.object.isRequired,
   deleteData: PropTypes.func,
   message: PropTypes.object,
   setModal: PropTypes.func,

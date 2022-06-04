@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import TableRow from "./TableRow";
 import Modal from "./Modal";
 
-function Table({ data, deleteData }) {
+function Table({data, deleteData}) {
   const [modal, setModal] = useState(null);
 
   let renderData = null;
@@ -15,20 +15,20 @@ function Table({ data, deleteData }) {
       <table className="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Correo</th>
-            <th>Curso</th>
-            <th>Tipo de usuario</th>
+            {/* <th>Id</th> */}
+            <th>Categoría</th>
+            <th>Servicio</th>
+            <th>Descripción</th>
+            <th>Área</th>
+            <th>Fecha</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {data.map(user => (
+          {data.map((request, i) => (
             <TableRow
-              key={user.id}
-              user={user}
+              key={i}
+              request={request}
               deleteData={deleteData}
               setModal={setModal}
             />
@@ -41,7 +41,6 @@ function Table({ data, deleteData }) {
     <div className="col-sm-12 col-lg-9">
       <h2>Información de usuario</h2>
       <div className="table-responsive">{renderData}</div>
-      {data.length > 0 && <Modal {...modal} />}
     </div>
   );
 }

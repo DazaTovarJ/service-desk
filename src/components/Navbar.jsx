@@ -1,17 +1,16 @@
-// import {signOut} from "firebase/auth";
 import React from "react";
-// import {Link, NavLink, useNavigate} from "react-router-dom";
-import {Link, NavLink} from "react-router-dom";
-// import {auth} from "../firebase";
+import {Link, NavLink, useNavigate} from "react-router-dom";
+import {signOut} from "firebase/auth";
+import {auth} from "../firebase";
 
 const Navbar = ({firebaseUser, setFirebaseUser}) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  /* const signUserOut = async () => {
+  const signUserOut = async () => {
     await signOut(auth);
     setFirebaseUser(null);
     navigate("/login");
-  }; */
+  };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -42,22 +41,22 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
                 Inicio
               </NavLink>
             </li>
-            {/* {firebaseUser != null ? (
+            {firebaseUser != null ? (
               <li className="nav-item">
                 <NavLink
-                  to="/admin"
+                  to="/request"
                   className={({isActive}) =>
                     `nav-link${isActive ? " active" : ""}`
                   }
                 >
-                  Admin
+                  Solicitudes
                 </NavLink>
               </li>
             ) : null}
             <li>
               {firebaseUser !== null ? (
                 <NavLink
-                  to=""
+                  to="/logout"
                   className={({isActive}) =>
                     `nav-link${isActive ? " active" : ""}`
                   }
@@ -78,13 +77,7 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
                   Login
                 </NavLink>
               )}
-            </li> */}
-            <NavLink
-              to="/login"
-              className={({isActive}) => `nav-link${isActive ? " active" : ""}`}
-            >
-              Iniciar Sesión
-            </NavLink>
+            </li>
           </ul>
         </div>
       </div>

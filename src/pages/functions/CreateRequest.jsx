@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useState} from "react";
 
 const CreateRequest = () => {
-  return (
-    <div>CreateRequest</div>
-  )
-}
+  const [message, setMessage] = useState(null);
 
-export default CreateRequest
+  return <div>CreateRequest</div>;
+};
+
+export default CreateRequest;

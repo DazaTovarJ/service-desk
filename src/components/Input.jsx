@@ -31,6 +31,17 @@ function Input({
         ))}
       </select>
     );
+  } else if (type === "textarea") {
+    inputElement = (
+      <textarea
+        name={name}
+        value={value}
+        className="form-control"
+        placeholder={placeholder}
+        onChange={handleChange}
+        {...constraints}
+      />
+    );
   } else {
     inputElement = (
       <input
@@ -66,7 +77,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
   label: PropTypes.string,
-  placeholder: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   handleChange: PropTypes.func,
   constraints: PropTypes.object,
   data: PropTypes.arrayOf(PropTypes.string),
