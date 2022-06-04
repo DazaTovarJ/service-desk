@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/service-desk/static/css/main.f8e783f6.css",
+    "main.js": "/service-desk/static/js/main.9f940b77.js",
+    "index.html": "/service-desk/index.html",
+    "main.f8e783f6.css.map": "/service-desk/static/css/main.f8e783f6.css.map",
+    "main.9f940b77.js.map": "/service-desk/static/js/main.9f940b77.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f8e783f6.css",
+    "static/js/main.9f940b77.js"
+  ]
+}
