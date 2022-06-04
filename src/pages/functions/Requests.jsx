@@ -39,7 +39,7 @@ const Requests = ({user}) => {
     };
 
     getData();
-  }, []);
+  }, [user.email]);
 
   const insertData = async (data) => {
     try {
@@ -59,23 +59,49 @@ const Requests = ({user}) => {
     }
   };
 
-  const updateData = (data) => {
-    let newData = requests.map((el) => (el.id === data.id ? data : el));
-    setRequests(newData);
+  const updateData = async (data) => {
+    try {
+      const dataRef = doc(db, user.email, data.id);
+
+      await updateDoc(dataRef, {
+        category: data.category,
+        service_type: data.service_type,
+        description: data.description,
+        location: data.location,
+        date: data.date,
+      });
+      let newData = requests.map((request) =>
+        request.id === data.id ? data : request,
+      );
+      setRequests(newData);
+      setMessage({
+        type: "success",
+        msg: "Datos actualizados satisfactoriamente",
+      });
+    } catch (error) {
+      setMessage({
+        type: "danger",
+        msg: "Ocurrió un error al actualizar los datos",
+      });
+    }
   };
 
-  const deleteData = (id) => {
-    let updatedData = requests.filter((user) => user.id !== id);
+  const deleteData = async (id) => {
+    try {
+      await deleteDoc(doc(db, user.email, id));
+      let updatedData = requests.filter((request) => request.id !== id);
 
-    setRequests(updatedData);
-    setMessage({
-      type: "success",
-      msg: "Datos eliminados satisfactoriamente",
-    });
-
-    setTimeout(() => {
-      setMessage(null);
-    }, 5000);
+      setRequests(updatedData);
+      setMessage({
+        type: "info",
+        msg: "Datos eliminados satisfactoriamente",
+      });
+    } catch (error) {
+      setMessage({
+        type: "success",
+        msg: "Ocurrió un error al intentar eliminar los datos",
+      });
+    }
   };
 
   return (

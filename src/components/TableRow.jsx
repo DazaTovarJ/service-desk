@@ -18,7 +18,7 @@ function TableRow({
     setQuestion({
       question: `¿Está seguro de que desea eliminar la petición ${request.id}?`,
       handleConfirm() {
-        deleteData(request);
+        deleteData(request.id);
         closeModal();
       },
     });
