@@ -34,7 +34,7 @@ function App() {
             />
           }
         >
-          <Route index element={<Home />} />
+          <Route index element={<Home user={firebaseUser} />} />
           <Route path="login" element={<Login />} />
           <Route
             path="request"

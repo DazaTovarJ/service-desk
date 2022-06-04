@@ -1,19 +1,22 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import {addDoc, collection, doc, setDoc} from "firebase/firestore";
+import {doc, setDoc} from "firebase/firestore";
+import {auth, db} from "../firebase";
 import Loader from "../components/Loader";
 import LoginForm from "../components/LoginForm";
 import Message from "../components/Message";
 import RegisterForm from "../components/RegisterForm";
-import {auth, db} from "../firebase";
 
 const Login = () => {
   const [registerMode, setRegisterMode] = useState(false);
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const signUp = async (email, password) => {
     try {
@@ -30,10 +33,7 @@ const Login = () => {
         id: userCredential.user.uid,
       });
 
-      await addDoc(collection(db, userCredential.user.email), {});
-
-      setMessage({type: "success", msg: "Usuario registrado exitosamente"});
-      // navigate("/admin");
+      navigate("/service-desk/");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         setMessage({
@@ -55,12 +55,8 @@ const Login = () => {
       setLoading(true);
 
       await signInWithEmailAndPassword(auth, email, password);
-      setMessage({type: "success", msg: "Inicio de sesión exitoso"});
-      // navigate("/admin");
+      navigate("/service-desk/");
     } catch (error) {
-      console.error(error.code);
-      console.error(error.message);
-
       if (
         error.code === "auth/user-not-found" ||
         error.code === "auth/wrong-password"

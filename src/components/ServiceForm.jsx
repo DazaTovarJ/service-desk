@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Input from "./Input";
+import Message from "./Message";
 
 const dateFormat = (date) => {
   const offset = date.getTimezoneOffset();
@@ -51,14 +52,9 @@ const loadServices = (option) => {
   return [];
 };
 
-const ServiceForm = ({
-  data,
-  insertRequest,
-  updateRequest,
-  setMessage,
-  closeModal,
-}) => {
+const ServiceForm = ({data, insertRequest, updateRequest, closeModal}) => {
   const [form, setForm] = useState(defaultForm);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     if (data) {
@@ -85,7 +81,7 @@ const ServiceForm = ({
     }
 
     setMessage(null);
-    if (form.id === null) {
+    if (form.id === undefined || form.id === null) {
       insertRequest(form);
     } else {
       updateRequest(form);
@@ -95,64 +91,67 @@ const ServiceForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} noValidate>
-      <Input
-        type="select"
-        name="category"
-        value={form.category}
-        label="Categoría"
-        data={categories}
-        handleChange={handleChange}
-        constraints={{required: true}}
-      />
-      <Input
-        type="select"
-        name="service_type"
-        value={form.service_type}
-        label="Tipo de servicio"
-        data={loadServices(form.category)}
-        handleChange={handleChange}
-        constraints={{required: true}}
-      />
-      <Input
-        type="textarea"
-        name="description"
-        value={form.description}
-        label="Descripción"
-        placeholder="Ej. Se dañó el aire acondicionado en..."
-        handleChange={handleChange}
-        constraints={{required: true}}
-      />
-      <Input
-        name="location"
-        value={form.location}
-        label="Ubicación en la empresa"
-        placeholder="Ej. Sistemas"
-        handleChange={handleChange}
-        constraints={{required: true}}
-      />
-      <Input
-        type="date"
-        name="date"
-        value={form.date}
-        label="Fecha de mantenimiento"
-        placeholder="Ej. Sistemas"
-        handleChange={handleChange}
-        constraints={{required: true}}
-      />
-      <div className="d-grid gap-2">
-        <button type="reset" className="btn btn-secondary">
-          Limpiar
-        </button>
-        <button
-          type="submit"
-          className="btn btn-success"
-          data-bs-dismiss="modal"
-        >
-          Enviar
-        </button>
-      </div>
-    </form>
+    <>
+      {message && <Message setMessage={setMessage} {...message} />}
+      <form onSubmit={handleSubmit} noValidate>
+        <Input
+          type="select"
+          name="category"
+          value={form.category}
+          label="Categoría"
+          data={categories}
+          handleChange={handleChange}
+          constraints={{required: true}}
+        />
+        <Input
+          type="select"
+          name="service_type"
+          value={form.service_type}
+          label="Tipo de servicio"
+          data={loadServices(form.category)}
+          handleChange={handleChange}
+          constraints={{required: true}}
+        />
+        <Input
+          type="textarea"
+          name="description"
+          value={form.description}
+          label="Descripción"
+          placeholder="Ej. Se dañó el aire acondicionado en..."
+          handleChange={handleChange}
+          constraints={{required: true}}
+        />
+        <Input
+          name="location"
+          value={form.location}
+          label="Ubicación en la empresa"
+          placeholder="Ej. Sistemas"
+          handleChange={handleChange}
+          constraints={{required: true}}
+        />
+        <Input
+          type="date"
+          name="date"
+          value={form.date}
+          label="Fecha de mantenimiento"
+          placeholder="Ej. Sistemas"
+          handleChange={handleChange}
+          constraints={{required: true}}
+        />
+        <div className="d-grid gap-2">
+          <button type="reset" className="btn btn-secondary">
+            Limpiar
+          </button>
+          <button
+            type="submit"
+            className="btn btn-success"
+            // data-bs-dismiss="modal"
+          >
+            Enviar
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

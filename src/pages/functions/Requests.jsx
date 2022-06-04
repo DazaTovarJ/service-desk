@@ -51,7 +51,7 @@ const Requests = ({user}) => {
         type: "success",
         msg: "Datos insertados satisfactoriamente",
       });
-    } catch {
+    } catch (error) {
       setMessage({
         type: "danger",
         msg: "Ocurrió un error al ingresar los datos",
@@ -139,7 +139,6 @@ const Requests = ({user}) => {
               setData={setDataToUpdate}
               insertRequest={insertData}
               updateRequest={updateData}
-              setMessage={setMessage}
               closeModal={closeModal}
             />
           </FormModal>

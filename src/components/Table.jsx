@@ -49,7 +49,7 @@ function Table({data, setDataToUpdate, deleteData}) {
   }
   return (
     <>
-      <h2>Información de usuario</h2>
+      <h3>Información de servicios</h3>
       {renderData}
     </>
   );

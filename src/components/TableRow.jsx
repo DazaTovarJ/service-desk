@@ -34,24 +34,26 @@ function TableRow({
       <td>{request.location}</td>
       <td>{request.date}</td>
       <td>
-        <button
-          type="button"
-          className="btn btn-warning"
-          data-bs-toggle="modal"
-          data-bs-target="#form-modal"
-          onClick={handleEdit}
-        >
-          Editar
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger"
-          data-bs-toggle="modal"
-          data-bs-target="#info-modal"
-          onClick={handleDelete}
-        >
-          Eliminar
-        </button>
+        <div className="btn-group-vertical">
+          <button
+            type="button"
+            className="btn btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#form-modal"
+            onClick={handleEdit}
+          >
+            Editar
+          </button>
+          <button
+            type="button"
+            className="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#info-modal"
+            onClick={handleDelete}
+          >
+            Eliminar
+          </button>
+        </div>
       </td>
     </tr>
   );
