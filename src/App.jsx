@@ -27,7 +27,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="/service-desk"
           element={
             <Base
               firebaseUser={firebaseUser}
@@ -41,7 +41,7 @@ function App() {
             path="request"
             element={
               <PrivateRoute>
-                <QueryRequest />
+                <QueryRequest user={firebaseUser} />
               </PrivateRoute>
             }
           />

@@ -9,13 +9,13 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
   const signUserOut = async () => {
     await signOut(auth);
     setFirebaseUser(null);
-    navigate("/login");
+    navigate("login");
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand">
+        <Link to="/service-desk/" className="navbar-brand">
           Mesa de Servicio
         </Link>
         <button
@@ -33,7 +33,7 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <NavLink
-                to="/"
+                to="/service-desk/"
                 className={({isActive}) =>
                   `nav-link${isActive ? " active" : ""}`
                 }
@@ -44,7 +44,7 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
             {firebaseUser != null ? (
               <li className="nav-item">
                 <NavLink
-                  to="/request"
+                  to="request"
                   className={({isActive}) =>
                     `nav-link${isActive ? " active" : ""}`
                   }
@@ -56,7 +56,7 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
             <li>
               {firebaseUser !== null ? (
                 <NavLink
-                  to="/logout"
+                  to="logout"
                   className={({isActive}) =>
                     `nav-link${isActive ? " active" : ""}`
                   }
@@ -69,7 +69,7 @@ const Navbar = ({firebaseUser, setFirebaseUser}) => {
                 </NavLink>
               ) : (
                 <NavLink
-                  to="/login"
+                  to="login"
                   className={({isActive}) =>
                     `nav-link${isActive ? " active" : ""}`
                   }

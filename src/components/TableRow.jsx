@@ -1,20 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function TableRow({request, deleteData, setModal}) {
+function TableRow({request, deleteData, setQuestion, openModal, closeModal}) {
   const handleDelete = () => {
-    setModal({
-      type: "confirmation",
-      msg: `¿Está seguro de que desea eliminar la solicitud con id ${request.id}?`,
-      handleClick: function () {
+    setQuestion({
+      question: `¿Está seguro de que desea eliminar la petición ${request.id}?`,
+      handleConfirm() {
         deleteData(request.id);
+        closeModal();
       },
     });
+    openModal();
   };
 
   return (
     <tr>
-      {/* <td>{request.id}</td> */}
+      <td>{request.id}</td>
       <td>{request.category}</td>
       <td>{request.service_type}</td>
       <td>{request.description}</td>
@@ -39,7 +40,7 @@ TableRow.propTypes = {
   request: PropTypes.object.isRequired,
   deleteData: PropTypes.func,
   message: PropTypes.object,
-  setModal: PropTypes.func,
+  setQuestion: PropTypes.func,
 };
 
 export default TableRow;

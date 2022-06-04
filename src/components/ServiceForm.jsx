@@ -51,7 +51,13 @@ const loadServices = (option) => {
   return [];
 };
 
-const ServiceForm = ({editMode, insertRequest, updateRequest, setMessage}) => {
+const ServiceForm = ({
+  editMode,
+  insertRequest,
+  updateRequest,
+  setMessage,
+  closeModal,
+}) => {
   const [form, setForm] = useState(defaultForm);
 
   const handleChange = (e) => {
@@ -63,13 +69,19 @@ const ServiceForm = ({editMode, insertRequest, updateRequest, setMessage}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    closeModal();
+
     if (!e.target.checkValidity()) {
       setMessage({type: "danger", msg: "Campos requeridos"});
       return;
     }
 
     setMessage(null);
-    insertRequest(form);
+    if (!editMode) {
+      insertRequest(form);
+    } else {
+      updateRequest(form);
+    }
 
     setForm(defaultForm);
   };
@@ -121,10 +133,14 @@ const ServiceForm = ({editMode, insertRequest, updateRequest, setMessage}) => {
         constraints={{required: true}}
       />
       <div className="d-grid gap-2">
-        <button type="reset" className="btn btn-primary">
+        <button type="reset" className="btn btn-secondary">
           Limpiar
         </button>
-        <button type="submit" className="btn btn-secondary">
+        <button
+          type="submit"
+          className="btn btn-success"
+          data-bs-dismiss="modal"
+        >
           Enviar
         </button>
       </div>
