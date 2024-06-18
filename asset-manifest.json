@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/service-desk/static/css/main.f8e783f6.css",
-    "main.js": "/service-desk/static/js/main.33fd1e89.js",
+    "main.css": "/service-desk/static/css/main.0ab4c972.css",
+    "main.js": "/service-desk/static/js/main.20a88e5c.js",
     "static/media/manteinance_electrical.jpg": "/service-desk/static/media/manteinance_electrical.af62a1c2940ff4b030bb.jpg",
     "static/media/manteinance_ac.png": "/service-desk/static/media/manteinance_ac.dd22c530c30d591472ae.png",
     "static/media/general_keepings.jpg": "/service-desk/static/media/general_keepings.26d37ada79d4a3ed5901.jpg",
     "index.html": "/service-desk/index.html",
-    "main.f8e783f6.css.map": "/service-desk/static/css/main.f8e783f6.css.map",
-    "main.33fd1e89.js.map": "/service-desk/static/js/main.33fd1e89.js.map"
+    "main.0ab4c972.css.map": "/service-desk/static/css/main.0ab4c972.css.map",
+    "main.20a88e5c.js.map": "/service-desk/static/js/main.20a88e5c.js.map"
   },
   "entrypoints": [
-    "static/css/main.f8e783f6.css",
-    "static/js/main.33fd1e89.js"
+    "static/css/main.0ab4c972.css",
+    "static/js/main.20a88e5c.js"
   ]
 }
